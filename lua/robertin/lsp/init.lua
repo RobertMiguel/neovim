@@ -4,3 +4,5 @@ if not status_ok then
 end
 
 require "robertin.lsp.mason"
+require "robertin.lsp.handlers"
+require "robertin.lsp.null-ls"

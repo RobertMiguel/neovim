@@ -4,7 +4,7 @@ local servers = {
 	"html",
 	"tsserver",
 	"jsonls",
-  --"jdtls"
+  "jdtls"
 }
 
 local settings = {
@@ -30,3 +30,18 @@ local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
 	return print("Deu pau")
 end
+
+
+local opts = {}
+
+for _, server in pairs(servers) do
+	opts = {
+		on_attach = require("robertin.lsp.handlers").on_attach,
+		capabilities = require("robertin.lsp.handlers").capabilities,
+	}
+
+	server = vim.split(server, "@")[1]
+
+	lspconfig[server].setup(opts)
+end
+
